@@ -6,8 +6,8 @@
 set -e
 
 ECS_REGION="us-east-2"
-NAMESPACE="microservicemovies-review"
-IMAGE_BASE="microservicemovies-review"
+NAMESPACE="microservicemovies"
+IMAGE_BASE="microservicemovies"
 ECR_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${ECS_REGION}.amazonaws.com"
 SHORT_GIT_HASH=$(echo $CIRCLE_SHA1 | cut -c -7)
 TAG=$SHORT_GIT_HASH
@@ -25,7 +25,7 @@ configure_aws_cli() {
 
 tag_and_push_images() {
   echo "Tagging and pushing images..."
-  $(aws ecr get-login --region "${ECS_REGION}")
+  $(aws ecr get-login --no-include-email --region "${ECS_REGION}")
   # tag
   docker tag ${IMAGE_BASE}_users-db-review ${ECR_URI}/${NAMESPACE}/users-db-review:${TAG}
   docker tag ${IMAGE_BASE}_movies-db-review ${ECR_URI}/${NAMESPACE}/movies-db-review:${TAG}
