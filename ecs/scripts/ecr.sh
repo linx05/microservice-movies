@@ -6,8 +6,8 @@
 set -e
 
 ECS_REGION="us-east-2"
-NAMESPACE="microservicemovies"
-IMAGE_BASE="microservicemovies"
+NAMESPACE="microservicemovies-review"
+IMAGE_BASE="microservicemovies-review"
 ECR_URI="${AWS_ACCOUNT_ID}.dkr.ecr.${ECS_REGION}.amazonaws.com"
 SHORT_GIT_HASH=$(echo $CIRCLE_SHA1 | cut -c -7)
 TAG=$SHORT_GIT_HASH
